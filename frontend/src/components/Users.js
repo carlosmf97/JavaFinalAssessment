@@ -36,11 +36,13 @@ export default function Users(){
             <th>Surname</th>
             <th>Email</th>
             <th>Phone number</th>
+            <th>Update</th>
+            <th>Delete</th>
         </tr>
         {userData.map( element => { return <User props={element}/>})}
     </table>
 
-    <a href="/" className="homeButton">Back to Home</a>
+    <button className="homeButton"><a href="/">Back to Home</a></button>
     </div>
     )
 
