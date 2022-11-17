@@ -1,0 +1,45 @@
+.tableContainer{
+    width: 100%;
+    display: flex;
+    /* justify-content: center; */
+    flex-direction: column;
+}
+
+.usersTable{
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 25px;
+    /* border: 2px solid black; */
+    /* border-collapse: collapse; */
+}
+
+
+.usersTable td{
+    min-width: 200px;
+    /* border: 2px solid black; */
+    padding: 20px;
+
+}
+.usersTable th{
+    padding: 10px;
+    min-width: 20%;
+    border-bottom: 2px solid black;
+
+}
+
+.homeButton{
+    margin: 0 auto;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: white;
+    font-size: 25px;
+    margin-top: 30px;
+    min-height: 50px;
+    width: 200px;
+}
+
+.homeButton:hover{
+    background-color: black;
+    color: white;
+}
