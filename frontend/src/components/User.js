@@ -18,7 +18,7 @@ export default function User(props){
                 <td>{props.props.email}</td>
                 <td>{props.props.phone}</td>
                 <td><button className="updateButton" onClick={clickUpdateHandler}>Update</button></td>
-                <td><button className="deleteButton"><a href="/delete">Delete</a></button></td>
+                <td><button className="deleteButton" onClick={clickDeleteHandler}>Delete</button></td>
             </tr>
 
     )

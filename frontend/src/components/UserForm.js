@@ -7,10 +7,11 @@ import { useEffect } from "react";
 export default function UserForm() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [userData, setUserData] = useState([]);
+  let [user, setUser] = useState([]);
 
-  const url = "localhost:8080/users/" + searchParams.get("id");
+  let url = "http://localhost:8080/users/" + searchParams.get("id");
 
-  useEffect(async () => {
+    useEffect(async () => {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json; charset=utf-8");
 
@@ -24,45 +25,37 @@ export default function UserForm() {
       .then((response) => response.json())
       .then((response) => setUserData(response))
       .catch((error) => console.log("error", error));
+
+
   }, []);
 
-  const [name, setName] = useState();
-  const [surname, setSurname] = useState();
-  const [email, setEmail] = useState();
-  const [phone, setPhone] = useState();
-
-  const nameHandler = (e) => {
-    setName(e.target.value);
-  };
-  const surnameHandler = (e) => {
-    setSurname(e.target.value);
-  };
-  const emailHandler = (e) => {
-    setEmail(e.target.value);
-  };
-  const phoneHandler = (e) => {
-    setPhone(e.target.value);
-  };
-
   const submitHandler = (e) => {
+    
     e.preventDefault();
 
     let user = {
-      username: name,
-      lastname: surname,
-      email: email,
-      phone: phone,
-    };
+        id: searchParams.get("id"),
+        username: document.getElementsByClassName("inputName")[0].value,
+        lastname: document.getElementsByClassName("inputSurname")[0].value,
+        email: document.getElementsByClassName("inputEmail")[0].value,
+        phone: document.getElementsByClassName("inputPHone")[0].value
+    }
+
+    console.log(user);
+
+    setUser(user);
 
     let requestOptions;
 
     if (searchParams.get("id") != undefined) {
-      requestOptions = {
+        url ="http://localhost:8080/users/" + searchParams.get("id");        
+        requestOptions = {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(user),
       };
     } else {
+        url = "http://localhost:8080/users";
       requestOptions = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -70,46 +63,41 @@ export default function UserForm() {
       };
     }
 
-    fetch("http://localhost:8080/users", requestOptions)
+    fetch(url, requestOptions)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
       });
-
     window.location.href = "/users";
   };
 
   return (
     <div>
-      <form className="userForm">
+      <form className="userForm" autoComplete="off">
         <label>Name:</label>
         <input
           type="text"
           className="inputName"
-          value={userData.username}
-          onChange={nameHandler}
+          defaultValue={userData.username}
         />
         <label>Surname:</label>
         <input
           type="text"
           className="inputSurname"
-          value={userData.lastname}
-          onChange={surnameHandler}
+          defaultValue={userData.lastname}
         />
         <label>Email:</label>
         <input
           type="email"
           className="inputEmail"
-          value={userData.email}
-          onChange={emailHandler}
+          defaultValue={userData.email}
         />
         <label>Phone number:</label>
         <input
           type="text"
           maxLength={9}
           className="inputPHone"
-          value={userData.phone}
-          onChange={phoneHandler}
+          defaultValue={userData.phone}
         />
         <input type="submit" className="inputSubmit" onClick={submitHandler} />
       </form>

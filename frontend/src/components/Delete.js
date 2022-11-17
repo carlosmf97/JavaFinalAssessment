@@ -8,23 +8,21 @@ export default function Delete(){
 
     const [searchParams, setSearchParams] = useSearchParams();
   
-    const url = "localhost:8080/users/" + searchParams.get("id") + "/delete";
-
+    const url = "http://localhost:8080/users/" + searchParams.get("id") + "/delete";
+    console.log(url);
     useEffect(async () => {
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json; charset=utf-8");
+      var myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json; charset=utf-8");
     
-        var requestOptions = {
-          method: "DELETE",
-          headers: myHeaders,
-          redirect: "follow",
-        };
-    
-        fetch(url, requestOptions)
-          .then((response) => response.json())
-          .then((response) => console.log(response))
-          .catch((error) => console.log("error", error));
+      fetch(url, {method : 'DELETE'})
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
       }, []);
 
+      window.location.href="/";
 
+      return (
+        <div></div>
+      )
 }
