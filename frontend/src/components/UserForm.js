@@ -34,6 +34,8 @@ export default function UserForm(){
             .then(response => response.json())
             .then( (data) => { console.log(data) } );
 
+        window.location.href="/users";
+
     }
 
 
@@ -47,7 +49,7 @@ export default function UserForm(){
             <input type="text" className="inputSurname" onChange={surnameHandler}/>
             <label>Email:</label>
             <input type="email" className="inputEmail" onChange={emailHandler}/>
-            <label>PHone number:</label>
+            <label>Phone number:</label>
             <input type="text" maxLength={9} className="inputPHone" onChange={phoneHandler}/>
             <input type="submit" className="inputSubmit" onClick={submitHandler}/>
         </form>

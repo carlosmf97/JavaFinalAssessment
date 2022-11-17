@@ -11,8 +11,22 @@ export default function Users(){
     const [userData, setUserData] = useState([]);
 
     useEffect( async () => {
-       await fetch(url).then( response => setUserData(response.json()) ).then( data => console.log(data));
+       var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json; charset=utf-8");
+
+        var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+        };
+
+        fetch("http://localhost:8080/users", requestOptions)
+        .then(response => response.json())
+        .then(response => setUserData(response))
+        .catch(error => console.log('error', error));
     }, []);
+
+    
 
 
     return(
@@ -26,7 +40,7 @@ export default function Users(){
         {userData.map( element => { return <User props={element}/>})}
     </table>
 
-    <button className="homeButton">Back to Home</button>
+    <a href="/" className="homeButton">Back to Home</a>
     </div>
     )
 

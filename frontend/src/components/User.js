@@ -7,10 +7,10 @@ export default function User(props){
 
  return (
             <tr>
-                <td>Name</td>
-                <td>Surname</td>
-                <td>Email</td>
-                <td>PhoneNumber</td>
+                <td>{props.props.username}</td>
+                <td>{props.props.lastname}</td>
+                <td>{props.props.email}</td>
+                <td>{props.props.phone}</td>
             </tr>
 
     )
