@@ -7,21 +7,20 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name ="carlosMunozTable")
+@Table(name ="carlosMunozAndRodrigoGameroTable")
 public class User {
 		
 		private @Id @GeneratedValue(strategy = GenerationType.AUTO) Integer id;
 		private String username;
-		private String password;
+		private String lastname;
 		private String email;
 		private String phone;
 		
 		public User() {}
 
-		public User(String username, String password, String email, String phone) {
-			super();
+		public User(String username, String lastname, String email, String phone) {
 			this.username = username;
-			this.password = password;
+			this.lastname = lastname;
 			this.email = email;
 			this.phone = phone;
 		}
@@ -34,14 +33,7 @@ public class User {
 			this.username = username;
 		}
 
-		public String getPassword() {
-			return password;
-		}
-
-		public void setPassword(String password) {
-			this.password = password;
-		}
-
+		
 		public String getEmail() {
 			return email;
 		}
@@ -58,11 +50,6 @@ public class User {
 			this.phone = phone;
 		}
 
-		@Override
-		public String toString() {
-			return "User [username=" + username + ", password=" + password + ", email=" + email + ", phone=" + phone + "]";
-		}
-
 		public Integer getId() {
 			return id;
 		}
@@ -70,5 +57,21 @@ public class User {
 		public void setId(Integer id) {
 			this.id = id;
 		}
-			
+
+		@Override
+		public String toString() {
+			return "User [id=" + id + ", username=" + username + ", lastname=" + lastname + ", email=" + email
+					+ ", phone=" + phone + "]";
+		}
+
+		public String getLastname() {
+			return lastname;
+		}
+
+		public void setLastname(String lastname) {
+			this.lastname = lastname;
+		}
+		
+		
+		
 }
