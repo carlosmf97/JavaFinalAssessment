@@ -10,8 +10,8 @@ export default function Users(){
 
     const [userData, setUserData] = useState([]);
 
-    useEffect( () => {
-        fetch(url).then( response => setUserData(response.json()) ).then( data => console.log(data));
+    useEffect( async () => {
+       await fetch(url).then( response => setUserData(response.json()) ).then( data => console.log(data));
     }, []);
 
 
